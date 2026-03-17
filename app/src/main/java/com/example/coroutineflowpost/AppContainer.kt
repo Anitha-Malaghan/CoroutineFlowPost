@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.coroutineflowpost.data.local.AppDatabase
 import com.example.coroutineflowpost.data.local.PostDao
+import com.example.coroutineflowpost.data.network.NetworkMonitor
 import com.example.coroutineflowpost.data.remote.PostApiService
 import com.example.coroutineflowpost.data.remote.RetrofitClient
 import com.example.coroutineflowpost.data.repository.PostRepositoryImpl
@@ -24,6 +25,8 @@ class AppContainer(context: Context) {
     ).build()
 
     private val postDao: PostDao = database.postDao()
+
+    val networkMonitor = NetworkMonitor(context)
 
     // --- Repository ---
     private val postRepository: PostRepository = PostRepositoryImpl(
